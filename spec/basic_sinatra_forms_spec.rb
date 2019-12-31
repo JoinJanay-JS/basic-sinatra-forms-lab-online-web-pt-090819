@@ -6,7 +6,7 @@ describe App do
       expect(last_response.status).to eq(200)
     end
 
-    it 'renders basketball team form' do
+    it 'renders basketball team form' do 
       visit '/newteam'
       expect(page).to have_selector("form")
       expect(page).to have_field(:name)
@@ -20,18 +20,11 @@ describe App do
   end
 
   describe 'POST /team' do
-    it 'does not return Sinatra error page' do
-      visit '/newteam'
-
-      click_button "Submit"
-      expect(page).to_not have_text("Backtrace")
-    end
-
-    it "displays the basketball team name in the browser" do
+    it "displays the basketball team name in the browser" do 
       visit '/newteam'
 
       fill_in(:name, :with => "Bballers")
-      click_button "Submit"
+      click_button "submit"
       expect(page).to have_text("Team Name: Bballers")
     end
 
@@ -39,7 +32,7 @@ describe App do
       visit '/newteam'
 
       fill_in(:coach, :with => "Walter")
-      click_button "Submit"
+      click_button "submit"
 
       expect(page).to have_text("Coach: Walter")
     end
@@ -48,7 +41,7 @@ describe App do
       visit '/newteam'
 
       fill_in(:pg, :with => "Jeff")
-      click_button "Submit"
+      click_button "submit"
 
       expect(page).to have_text("Point Guard: Jeff")
     end
@@ -56,29 +49,39 @@ describe App do
     it "displays the shooting guard's name in the browser" do
       visit '/newteam'
 
-      fill_in(:sg, :with => "Joe")
-      click_button "Submit"
+      fill_in(:sg, :with => "Ralph")
+      click_button "submit"
 
-      expect(page).to have_text("Shooting Guard: Joe")
+      expect(page).to have_text("Shooting Guard: Ralph")
     end
 
     it "displays the power forward's name in the browser" do
       visit '/newteam'
 
       fill_in(:pf, :with => "Danny")
-      click_button "Submit"
+      click_button "submit"
 
       expect(page).to have_text("Power Forward: Danny")
     end
 
+    it "displays the shooting gaurd's name in the browser" do
+      visit '/newteam'
+
+      fill_in(:sg, :with => "Joe")
+      click_button "submit"
+
+      expect(page).to have_text("Shooting Guard: Joe")
+    end
 
     it "displays the center's name in the browser" do
       visit '/newteam'
 
       fill_in(:c, :with => "Avi")
-      click_button "Submit"
+      click_button "submit"
 
       expect(page).to have_text("Center: Avi")
     end
+
+
   end
 end
